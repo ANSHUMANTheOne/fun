@@ -1,12 +1,10 @@
 
-
-<!This is where the answer shows up action Time</h2>
-
+yu<!answerreaction Time</h2>
  butto  id="box" onclick="start()">Click me</button>
 
-<p id ur time:</p>
+<p id  result">Your time:</p>
 
-<scrip></scrip>
+crip
 var box = document.getElementById("box")
 var result = document.getElementById("result")
 var time
@@ -15,7 +13,18 @@ function start(){
 
 box.innerHTML = "Wait..."
 
+setTimeout(function(){
 
+box.innerHTML = "CLICK"
+time = Date.now()
+
+},2000)
+
+}
+
+box.onclick = function(){
+
+if(box.innerHTML == "CLICK"){
 
 var now = Date.now()
 var answer = now - time
