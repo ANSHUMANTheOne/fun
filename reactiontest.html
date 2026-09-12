@@ -1,26 +1,124 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+
+<title>Reaction Game</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align: center;
+margin-top: 60px;
+}
+
+#box{
+width:400px;
+height:200px;
+background-color:lightgray;
+margin:30px auto;
+padding-top:80px;
+box-sizing:border-box;
+font-size:25px;
+}
+
+button{
+padding:10px;
+font-size:16px;
+}
+
+</style>
+
+</head>
+
 <body>
 
-<h2>Reaction Time</h2>
+<h2>Reaction time Game</h2>
 
-<button id="box">Click me</button>
+<p>click the box when it says CLICK</p>
+
+<div id="box">click to start</div>
 
 <p id="result">Your time:</p>
+
+<p id="best">best time:</p>
 
 <script>
 
 var box = document.getElementById("box")
+var result = document.getElementById("result")
+var besttext = document.getElementById("best")
+
+var starttime
+var ready = false
+var best = 0
+
+function start(){
+
+box.innerHTML = "wait..."
+box.style.backgroundColor = "lightgray"
+
+ready = false
+
+var wait = Math.floor(Math.random() * 3000) + 1000
+
+setTimeout(function(){
+
+box.innerHTML = "CLICK"
+box.style.backgroundColor = "lightgreen"
+
+starttime = Date.now()
+ready = true
+
+},wait)
+
+}
+
 
 box.onclick = function(){
 
-    box.innerHTML = "Wait..."
+if(ready == true){
+
+var endtime = Date.now()
+var finaltime = endtime - starttime
+
+result.innerHTML = "your time: " + finaltime + " ms"
+
+if(best == 0 || finaltime < best){
+
+best = finaltime
+besttext.innerHTML = "Best time: " + best + " ms"
 
 }
+
+box.innerHTML = "click for another try"
+box.style.backgroundColor = "lightgray"
+
+ready = false
+
+}
+
+else if(box.innerHTML == "click for another try"){
+
+start()
+
+}
+
+else if(box.innerHTML == "wait..."){
+
+result.innerHTML = "too early!"
+
+}
+
+}
+
+
+start()
 
 </script>
 
 </body>
 
 </html>
+
