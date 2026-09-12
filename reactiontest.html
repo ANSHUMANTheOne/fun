@@ -11,6 +11,24 @@ var box = document.getElementById("box")
 var result = document.getElementById("result")
 var time
 
+function start(){
+
+box.innerHTML = "Wait..."
+
+
+
+var now = Date.now()
+var answer = now - time
+
+result.innerHTML = "Your time: " + answer + " ms"
+
+box.innerHTML = "Try again"
+
+}
+
+}
+
+</script>
 
 </body>
 
