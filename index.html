@@ -1,40 +1,30 @@
-<html>
-
-<head>
-
-<title>my calculator</title>
-
-</head>
-
-<body>
-
-<h2>my Calculator</h2>
-
-<input id="num1" type="number" placeholder="first number">
-
-<input id="num2" type="number" placeholder="second number">
-
-<select id="mathSign">
-
-<option value="plus">+</option>
-<option value="minus">-</option>
-<option value="times">*</option>
-<option value="divide">/</option>
-
-</select>
-
-<button onclick="calculate()">Calculate</button>
-
-<p id="answerText">result:</p>
-
-<script>
-
 function calculate(){
 
+var n1 = document.getElementById("num1").value
+var n2 = document.getElementById("num2").value
+var sign = document.getElementById("mathSign").value
+
+var x = parseFloat(n1)
+var y = parseFloat(n2)
+
+var answer = 0
+
+if(sign == "plus"){
+answer = x + y
 }
 
-</script>
+if(sign == "minus"){
+answer = x - y
+}
 
-</body>
+if(sign == "times"){
+answer = x * y
+}
 
-</html>
+if(sign == "divide"){
+answer = x / y
+}
+
+document.getElementById("answerText").innerHTML = "result: " + answer
+
+}
