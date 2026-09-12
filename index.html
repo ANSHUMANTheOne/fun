@@ -10,15 +10,19 @@ body{
 font-family:system-ui;
 background:#f2f2f2;
 text-align:center;
-margin-top:60px;
+margin-top:50px;
 }
 
 .calculator{
 background:white;
-width:350px;
+width:360px;
 margin:auto;
 padding:25px;
 border-radius:12px;
+}
+
+h2{
+margin-bottom:20px;
 }
 
 input,select{
@@ -26,21 +30,37 @@ width:85%;
 padding:10px;
 margin:7px;
 font-size:16px;
+box-sizing:border-box;
 }
 
 button{
-width:85%;
 padding:10px;
-margin-top:10px;
+margin:6px;
 font-size:16px;
 background:#333;
 color:white;
 border:0;
 border-radius:7px;
+cursor:pointer;
+}
+
+button:hover{
+background:#555;
+}
+
+#clear{
+background:#888;
 }
 
 #answerText{
-font-size:20px;
+font-size:21px;
+margin-top:20px;
+}
+
+#history{
+font-size:14px;
+text-align:left;
+margin-top:20px;
 }
 
 </style>
@@ -66,13 +86,27 @@ font-size:20px;
 
 </select>
 
+<br>
+
 <button onclick="calculate()">Calculate</button>
 
+<button id="clear" onclick="clearCalculator()">Clear</button>
+
 <p id="answerText">result:</p>
+
+<p id="last">last calculation:</p>
+
+<div id="history">
+
+<p>history:</p>
+
+</div>
 
 </div>
 
 <script>
+
+var historyList = []
 
 function calculate(){
 
@@ -80,42 +114,92 @@ var n1 = document.getElementById("num1").value
 var n2 = document.getElementById("num2").value
 var sign = document.getElementById("mathSign").value
 
-var x = parseFloat(n1)
-var y = parseFloat(n2)
-
-var answer = 0
-
 if(n1 == "" || n2 == ""){
 
 document.getElementById("answerText").innerHTML = "enter both numbers"
+
 return
 
 }
 
+var x = parseFloat(n1)
+var y = parseFloat(n2)
+
+var answer = 0
+var symbol = ""
+
 if(sign == "plus"){
+
 answer = x + y
+symbol = "+"
+
 }
 
 if(sign == "minus"){
+
 answer = x - y
+symbol = "-"
+
 }
 
 if(sign == "times"){
+
 answer = x * y
+symbol = "*"
+
 }
 
 if(sign == "divide"){
 
 if(y == 0){
+
 document.getElementById("answerText").innerHTML = "cant divide by 0"
+
 return
+
 }
 
 answer = x / y
+symbol = "/"
 
 }
 
 document.getElementById("answerText").innerHTML = "result: " + answer
+
+document.getElementById("last").innerHTML =
+"last calculation: " + x + " " + symbol + " " + y + " = " + answer
+
+historyList.push(x + " " + symbol + " " + y + " = " + answer)
+
+showHistory()
+
+}
+
+function showHistory(){
+
+var text = "<p>history:</p>"
+
+for(var i = 0; i < historyList.length; i++){
+
+text = text + "<p>" + historyList[i] + "</p>"
+
+}
+
+document.getElementById("history").innerHTML = text
+
+}
+
+function clearCalculator(){
+
+document.getElementById("num1").value = ""
+document.getElementById("num2").value = ""
+
+document.getElementById("answerText").innerHTML = "result:"
+document.getElementById("last").innerHTML = "last calculation:"
+
+historyList = []
+
+document.getElementById("history").innerHTML = "<p>history:</p>"
 
 }
 
