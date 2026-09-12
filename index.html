@@ -1,3 +1,109 @@
+<html>
+
+<head>
+
+<title>my calculator</title>
+
+<style>
+
+body{
+font-family:system-ui;
+background:#f2f2f2;
+text-align:center;
+margin-top:60px;
+}
+
+.calculator{
+background:white;
+width:350px;
+margin:auto;
+padding:25px;
+border-radius:12px;
+}
+
+input,select{
+width:85%;
+padding:10px;
+margin:7px;
+font-size:16px;
+}
+
+button{
+width:85%;
+padding:10px;
+margin-top:10px;
+font-size:16px;
+background:#333;
+color:white;
+border:0;
+border-radius:7px;
+}
+
+#answerText{
+font-size:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="calculator">
+
+<h2>my Calculator</h2>
+
+<input id="num1" type="number" placeholder="first number">
+
+<input id="num2" type="number" placeholder="second number">
+
+<select id="mathSign">
+
+<option value="plus">+</option>
+<option value="minus">-</option>
+<option value="times">*</option>
+<option value="divide">/</option>
+
+</select>
+
+<button onclick="calculate()">Calculate</button>
+
+<p id="answerText">result:</p>
+
+</div>
+
+<script>
+
+function calculate(){
+
+var n1 = document.getElementById("num1").value
+var n2 = document.getElementById("num2").value
+var sign = document.getElementById("mathSign").value
+
+var x = parseFloat(n1)
+var y = parseFloat(n2)
+
+var answer = 0
+
+if(n1 == "" || n2 == ""){
+
+document.getElementById("answerText").innerHTML = "enter both numbers"
+return
+
+}
+
+if(sign == "plus"){
+answer = x + y
+}
+
+if(sign == "minus"){
+answer = x - y
+}
+
+if(sign == "times"){
+answer = x * y
+}
+
 if(sign == "divide"){
 
 if(y == 0){
@@ -8,3 +114,13 @@ return
 answer = x / y
 
 }
+
+document.getElementById("answerText").innerHTML = "result: " + answer
+
+}
+
+</script>
+
+</body>
+
+</html>
