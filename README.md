@@ -14,9 +14,15 @@ Hope you enjoy the simplistic by design and slightly ridiculous calculator websi
 
 Notes:-
 The website was designed to stay simple and clean instead of filling the screen with unnecessary colors and effects.
+
 The background changes gradually with each successful calculation.
+
 ASCII art appears in different places as more calculations are made.
+
 Some specific numbers trigger special reactions.
+
 Calculation history can be cleared with the Clear button.
+
 The layout and alignment were adjusted with help from ChatGPT, including debugging some parts of the js and fixing why the result was not appearing.
+
 The ASCII art used in the project was sourced from https://emojicombos.com/ascii-art
